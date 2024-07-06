@@ -4,6 +4,9 @@
 # Maintainer: Pellegrino Prevete (tallero) <pellegrinoprevete@gmail.com>
 # Contributor: Matthew McGinn <mamcgi@gmail.com>
 
+_os="$( \
+  uname \
+    -o)"
 _pkg=ptpd
 pkgname="${_pkg}"
 pkgver=2.3.1
@@ -61,6 +64,18 @@ build() {
     --prefix=/usr
     --sbindir=/usr/bin
   )
+  echo "${_os}"
+  if [[ "${_os}" == 'Android' ]]; then
+    echo \
+      "disabling" \
+      "posix timestamps" \
+      "and pcap on Android"
+    _opts+=(
+      --disable-posix-timers
+      --disable-pcap
+      --disable-so-timestamping
+    )
+  fi
   cd \
     "${pkgname}-${pkgver}"
   ./configure \
