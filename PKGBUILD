@@ -16,7 +16,15 @@ _pkgdesc=(
 )
 pkgdesc="${_pkgdesc[*]}"
 arch=(
-  'any'
+  'x86_64'
+  'arm'
+  'armv7l'
+  'aarch64'
+  'mips'
+  'powerpc'
+  'riscv'
+  'pentium4'
+  'i686'
 )
 url="https://github.com/${_pkg}/${_pkg}"
 license=(
