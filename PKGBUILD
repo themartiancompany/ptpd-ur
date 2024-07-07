@@ -7,6 +7,10 @@
 _os="$( \
   uname \
     -o)"
+if [[ "${_os}" == 'Android' ]]; then
+  echo \
+    "you need to build this package from a glibc/musl environment"
+fi 
 _pkg=ptpd
 pkgname="${_pkg}"
 pkgver=2.3.1
@@ -64,7 +68,6 @@ build() {
     --prefix=/usr
     --sbindir=/usr/bin
   )
-  echo "${_os}"
   if [[ "${_os}" == 'Android' ]]; then
     echo \
       "disabling" \
